@@ -85,6 +85,28 @@ void del_list(list *&h, list *&t){ //удаляем список
 }
 
 int main(){
-
+    int n, x, first, max = numeric_limits<int>::min();
+    cout << "n = ";
+    cin >> n;
+    list *h = NULL, *t = NULL;
+    for (int i = 0; i<n; i++){
+        cin >> x;
+        push(h, t, x);
+    }
+    first = h->inf;
+    list *h1 = h;
+    while (h1){
+        if (h1->inf >= max) 
+            max = h1->inf;
+        h1 = h1->next;
+    }
+    h1 = h;
+    while (h1){
+        if (h1->inf == first) 
+            insert_after(h, t, h1, max);
+        h1 = h1->next;
+    }
+    print(h, t);
+    del_list(h, t);
     return 0;
 }
