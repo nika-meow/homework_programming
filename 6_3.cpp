@@ -113,6 +113,8 @@ int main(){
         h1 = NULL;
         t1 = NULL;
     }
-    print(h2, h2);
+    print(h2, t2);
+    del_list(h2, t2);
+    del_list(h1, t1);
     return 0;
 }
