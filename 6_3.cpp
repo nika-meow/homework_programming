@@ -84,6 +84,35 @@ void del_list(list *&h, list *&t){ //удаляем список
 }
 
 int main(){
-
+    int n, x;
+    float y, sum, k;
+    cout << "n = ";
+    cin >> n;
+    list *h = NULL, *t = NULL;
+    for (int i = 0; i<n; i++){
+        cin >> x;
+        push(h, t, x);
+    }
+    list *h1 = NULL, *t1 = NULL;
+    list *h2 = NULL, *t2 = NULL;
+    list *posl = t;
+    while (h){
+        x = h->inf;
+        h = h->next;
+        sum = 0, k = 0;
+        while (h){
+            sum+=h->inf;
+            push(h1, t1, h->inf);
+            k+=1;
+            h = h->next;
+        }
+        if (x>=(sum/k))
+            push(h2, t2, x);
+        t = t1;
+        h = h1;
+        h1 = NULL;
+        t1 = NULL;
+    }
+    print(h2, h2);
     return 0;
 }
