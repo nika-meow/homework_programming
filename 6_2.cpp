@@ -117,5 +117,8 @@ int main(){
         t2=t2->prev;
     }
     print(res, rest);
+    del_list(h1, t1);
+    del_list(h2, t2);
+    del_list(res, rest);
     return 0;
 }
