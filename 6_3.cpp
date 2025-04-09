@@ -106,7 +106,7 @@ int main(){
             k+=1;
             h = h->next;
         }
-        if (x>=(sum/k))
+        if (k == 0 || x>=(sum/k))
             push(h2, t2, x);
         t = t1;
         h = h1;
