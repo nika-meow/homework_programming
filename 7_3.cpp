@@ -151,6 +151,15 @@ void Delete(tree *&tr, tree *v){//удаление узла
 
 }
 
+void f(tree *tr){ // обратный обход (Л-П-К)
+    if (tr){
+        if (tr->inf%2==0)
+            Delete(tr, tr);
+        f(tr->left); //левое
+        f(tr->right); //правое
+    }
+}
+
 int main(){
     int n, x;
     cout << "n="; cin >> n;
@@ -159,5 +168,7 @@ int main(){
         cin >> x;
         insert(tr, x);
     }
+    f(tr);
+    preorder(tr);
     return 0;
 }
