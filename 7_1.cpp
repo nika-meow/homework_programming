@@ -26,14 +26,6 @@ void preorder (tree *tr){ // прямой обход (К-Л-П)
     } 
 }
 
-void preorderv(tree* tr, vector<int>& result) {
-    if (tr) {
-        result.push_back(tr->inf);  // Записываем значение в вектор
-        preorderv(tr->left, result);
-        preorderv(tr->right, result);
-    }
-}
-
 void postorder (tree *tr){ // обратный обход (Л-П-К)
     if (tr){
         postorder(tr->left); //левое
@@ -47,8 +39,7 @@ void inorder (tree *tr){ // симметричный обход (Л-К-П)
         inorder(tr->left); //левое
         cout << tr->inf << " "; //корень
         inorder(tr->right); //правое
-    }
-    
+    }  
 }
 
 void insert(tree *&tr, int x) { //вставка
@@ -77,6 +68,22 @@ void insert(tree *&tr, int x) { //вставка
     }
 }
 
+tree *find(tree *tr, int x){//поиск
+    if (!tr || x == tr->inf)//нашли или дошли до конца ветки
+        return tr;
+    if (x < tr->inf)
+        return find(tr->left, x);//ищем по левой ветке
+    else
+        return find(tr->right, x);//ищем по правой ветке
+}
+
+void f(tree *tr, int& sum){
+    if (tr){
+        sum+=tr->inf;
+        f(tr->parent, sum); 
+    } 
+}
+
 int main(){
     int n, x, uz;
     cout << "n="; cin >> n;
@@ -85,5 +92,13 @@ int main(){
         cin >> x;
         insert(tr, x);
     }
+    cin >> uz;
+    int sum = 0;
+    if (find(tr, uz)){
+        f(find(tr, uz), sum);
+        cout << sum-uz;
+    }
+    else
+        cout << "No";
     return 0;
 }
