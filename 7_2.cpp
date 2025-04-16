@@ -77,6 +77,18 @@ tree *find(tree *tr, int x){//поиск
         return find(tr->right, x);//ищем по правой ветке
 }
 
+
+void f(tree *tr){
+    if (tr){
+        if (tr->left && !(tr->right)){
+            cout << tr->inf << " ";
+        }
+        f(tr->left);
+        f(tr->right);
+    } 
+ 
+}
+
 int main(){
     int n, x;
     cout << "n="; cin >> n;
@@ -85,5 +97,6 @@ int main(){
         cin >> x;
         insert(tr, x);
     }
+    f(tr);
     return 0;
 }
