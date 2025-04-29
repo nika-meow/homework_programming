@@ -88,4 +88,11 @@ int main() {
     vec = input();
     print(vec);
     cout << endl;
+    vector<int> a(vec.size());
+    for (int i = 0; i < vec.size(); i++) a[i] = 0;
+    bfs(vec, a, 0);
+    for (int i = 0; i<a.size(); i++){
+        if (a[i] == 0)
+            cout << i << " ";
+    }
 }
