@@ -70,6 +70,26 @@ void ins_edges(vector<vector<int>>& vec, int x, int y, int mn){
     }
 }
 
+bool flag(vector<int> a){
+    bool f = true;
+    for (int i = 0; i < a.size(); i++)
+        if (a[i] == 0) f = false;
+    return f;
+}
+
+void dfs(vector<vector<int>> vec, vector<int>& a, int s){
+    int x = s; a[x] = 1; /*cout << x << "->";*/
+    int i = 0;
+    while (i < vec[x].size()){
+        if (a[vec[x][i]] == 0 && !flag(a)){
+            x = vec[x][i];
+            a[x] = 1;
+            dfs(vec, a, x);
+        }
+        i++;
+    }
+}
+
 int main() {
     vector<vector<int>> vec;
     vec = input();
