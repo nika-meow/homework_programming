@@ -80,4 +80,10 @@ int main() {
         }
     print(vec);
     cout << endl;
+    int a, b;
+    cin >> a;
+    cin >> b;
+    cout << endl;
+    ins_edges(vec, a, b, mn);
+    print(vec);
 }
