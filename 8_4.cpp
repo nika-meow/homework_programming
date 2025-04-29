@@ -100,4 +100,14 @@ int main() {
         }
     print(vec);
     cout << endl;
+    vector<int> a(vec.size());
+    for (int i = 0; i < vec.size(); i++) a[i] = 0;
+    int peak;
+    cin >> peak;
+    dfs(vec, a, peak);
+    cout << endl;
+    for (int i = 0; i<a.size(); i++){
+        if (a[i] == 0)
+            cout << i-mn << " ";
+    }
 }
