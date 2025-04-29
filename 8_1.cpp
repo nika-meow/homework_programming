@@ -65,4 +65,8 @@ int main() {
             if (vec[i][j] < mn) mn = vec[i][j];
         }
     print(vec);
+    cout << endl;
+    int a;
+    cin >> a;
+    cout << vec[a-mn].size();
 }
