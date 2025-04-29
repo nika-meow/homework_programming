@@ -65,6 +65,24 @@ void ins_edges(vector<vector<int>>& vec, int x, int y){
     }
 }
 
+void bfs(vector<vector<int>> vec, vector<int>& a, int s){
+    int x = s; /*a[x] = 1; cout << x << "->";*/ 
+    queue<int> q; q.push(x);
+    while (!q.empty()){
+        x = q.front(); q.pop();
+        int i = 0;
+        while (i < vec[x].size()){
+            if (a[vec[x][i]] == 0){
+                int y = vec[x][i];
+                a[y] = 1; q.push(y);
+                /*cout << y << "->";*/
+            }
+            i++;
+        }
+
+    }
+}
+
 int main() {
     vector<vector<int>> vec;
     vec = input();
