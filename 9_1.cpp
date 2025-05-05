@@ -43,9 +43,20 @@ list <data1>* hesh_table(vector <data1> vec, int m) {
     return mas;
 }
 
+void print_hesh(list <data1>* mas, int m) {
+    int i{0}, k{0};
+    while (i < m) {
+        for (auto iter = mas[i].begin(); iter != mas[i].end(); iter++)
+            cout << (*iter).name << " " << (*iter).experience << " / ";
+        cout << endl;
+        i++;
+    }
+}
+
 int main() {
     vector <data1> vec = create();
     int m;
     cout << "M: "; cin >> m;
     list <data1>* mas = hesh_table(vec, m);
+    print_hesh(mas, m);
 }
