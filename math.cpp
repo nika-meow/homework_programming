@@ -86,6 +86,24 @@ void postorder (tree *tr, stack<int> &a) {//обратный обход
     }
 }
 
+// Префиксный обход (выводит польскую нотацию)
+void prefixtr(tree* root, string& output) {
+    if (!root) return;
+    output += root->inf;
+    output += ' ';  // для разделения элементов
+    prefixtr(root->left, output);
+    prefixtr(root->right, output);
+}
+
+// Постфиксный обход (выводит обратную польскую нотацию)
+void postfixtr(tree* root, string& output) {
+    if (!root) return;
+    postfixtr(root->left, output);
+    postfixtr(root->right, output);
+    output += root->inf;
+    output += ' ';  // для разделения элементов
+}
+
 void max_height(tree *x, short &max, short deepness = 1){
     if (deepness > max) max = deepness;
     if (x->left) max_height(x->left, max, deepness + 1);
@@ -114,9 +132,26 @@ void print(tree *root = NULL) {
     }
 }
 
+void preorderpr(tree *tr){
+    if (tr){
+        cout << tr->inf; //корень
+        preorderpr(tr->left); //левое
+        preorderpr(tr->right); //правое
+    } 
+}
+
+void postorderpr(tree *tr){ 
+    if (tr){
+        postorderpr(tr->left); //левое
+        postorderpr(tr->right); //правое
+        cout << tr->inf; //корень
+    }
+}
+
 int main(){
     string str;
-    getline(cin, str);
+    cout << "str: ";
+    cin >> str;
     string znak = "+-/*0123456789()";
     int n = str.length();
     bool flag = true;
@@ -131,8 +166,16 @@ int main(){
         print(tr);
         stack<int> a;
         postorder(tr, a); //вызвали обход
-        cout << a.top(); //в стеке один элемент - извлекаем его
+        cout << "res: " << a.top(); //в стеке один элемент - извлекаем его
         a.pop();
+        cout << endl;
+        cout << "prefix: ";
+        preorderpr(tr);
+        cout << endl;
+        cout << "postfix: ";
+        postorderpr(tr);
+        
     }
+    
     return 0;
 }
