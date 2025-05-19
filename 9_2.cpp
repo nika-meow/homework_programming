@@ -48,8 +48,10 @@ people** create_hashtable(vector<people>& vec, int m) {
         int x = person.exp;
         int h1 = x % m;
         int h2 = 1 + (x % (m - 1));
+        
         for (int i = 0; i < m; ++i) {
             int index = (h1 + i * h2) % m;
+            
             if (table[index] == nullptr) {
                 table[index] = new people(person);
                 break;
@@ -67,11 +69,67 @@ void print_pep(people* p) {
     }
 }
 
+void printHashTable(people** mas, int M) {
+    for (int i = 0; i < M; ++i) {
+        cout << i << " ";
+        if (mas[i]) {
+            print_pep(mas[i]);
+        } else {
+            cout << "NULL";
+        }
+        cout << endl;
+    }
+}
+
+void hash_search(people** mas, int m, int d) {
+    int h1 = d % m;
+    int h2 = 1 + (d % (m - 1));
+    for (int i = 0; i < m; ++i) {
+        int index = (h1 + i * h2) % m;
+        if (mas[index] && mas[index]->exp == d) {
+            print_pep(mas[index]);
+            return;
+        }
+        if (!mas[index]) {
+            break;
+        }
+    }
+    cout << "�� �������" << endl;
+}
+
+void hash_p(people** table, int m, const people& person) {
+    int x = person.exp;
+    int h1 = x % m;
+    int h2 = 1 + (x % (m - 1));
+    for (int i = 0; i < m; ++i) {
+        int index = (h1 + i * h2) % m;
+        if (table[index] == nullptr) {
+            table[index] = new people(person);
+            break;
+        }
+    }
+    cout << "�� ������� �������� ������� - ������� �����������" << endl;
+}
+
 int main() {
     setlocale(LC_ALL, "Russian");
     vector<people> vec = inFile();
     int m;
     cout << "M: "; cin >> m;
     people** mas = create_hashtable(vec, m);
+    printHashTable(mas, m);
+    cout << "����� �� ������ 15 ���:" << endl;
+    hash_search(mas, m, 15);
+    cout << endl;
+    people temp;
+    cin >> temp.name;
+    cin >> temp.post;
+    string tmp;
+    cin >> tmp;
+    temp.DateOfBirth = Str_to_Date(tmp);
+    cin >> temp.exp;
+    cin >> temp.salary;
+    hash_p(mas, m, temp);
+    printHashTable(mas, m);
     return 0;
 }
